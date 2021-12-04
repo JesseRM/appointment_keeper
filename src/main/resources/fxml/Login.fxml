@@ -12,7 +12,7 @@
    <children>
       <Pane prefHeight="447.0" prefWidth="602.0" style="-fx-background-color: #3b5587;">
          <children>
-            <Label layoutX="105.0" layoutY="38.0" prefHeight="62.0" prefWidth="368.0" style="-fx-text-fill: #FFFFFF;" text="Appointment Management System">
+            <Label alignment="CENTER" layoutX="117.0" layoutY="30.0" prefHeight="54.0" prefWidth="368.0" style="-fx-text-fill: #FFFFFF;" text="Appointment Keeper" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
@@ -54,6 +54,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
+            <Label layoutX="208.0" layoutY="84.0" style="-fx-text-fill: #f7f7f7;" text="Appointment Management System" />
          </children>
       </Pane>
    </children>
