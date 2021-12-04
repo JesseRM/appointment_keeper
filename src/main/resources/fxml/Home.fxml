@@ -21,7 +21,7 @@
       <Button layoutX="25.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" />
       <Button layoutX="17.0" layoutY="121.0" mnemonicParsing="false" onMouseClicked="#addCustomer" prefHeight="26.0" prefWidth="123.0" text="Add Customer" />
       <Button layoutX="155.0" layoutY="121.0" mnemonicParsing="false" onMouseClicked="#modifyCustomer" prefHeight="26.0" prefWidth="123.0" text="Modify Customer" />
-      <Button layoutX="646.0" layoutY="121.0" mnemonicParsing="false" onMouseClicked="#makeAppointment" prefHeight="26.0" prefWidth="130.0" text="Make Appointment" />
+      <Button layoutX="646.0" layoutY="121.0" mnemonicParsing="false" onMouseClicked="#makeAppointment" prefHeight="26.0" prefWidth="130.0" text="Add Appointment" />
       <Button layoutX="788.0" layoutY="121.0" mnemonicParsing="false" onMouseClicked="#modifyAppointment" prefHeight="26.0" prefWidth="130.0" text="Modify Appointment" />
       <Pane layoutY="214.0" prefHeight="344.0" prefWidth="945.0" style="-fx-background-color: #b5b5b6;">
          <children>
