@@ -15,6 +15,7 @@ Instructions for cloning git repository can be found a the following links:
   [NetBeans](https://netbeans.apache.org/kb/docs/ide/git.html)  
   [IntelliJ IDEA](https://blog.jetbrains.com/idea/2020/10/clone-a-project-from-github/)
   
-Once the program is running the user is presented with a login in screen.  Login credentials are:
-  Username: user
+Once the program is running the user is presented with a login in screen.  
+Login credentials are:  
+  Username: user  
   Password: password
