@@ -15,7 +15,7 @@ The major objectives of this project were:
 # Usage
 The simplest way to try this application is to clone this repository with an IDE that can run Maven projects such as NetBeans or IntelliJ IDEA.
 
-Instructions for cloning git repositories on thes IDEs can be found a the following links:  
+Instructions for cloning git repositories on these IDEs can be found a the following links:  
 &nbsp;&nbsp;[NetBeans](https://netbeans.apache.org/kb/docs/ide/git.html)  
 &nbsp;&nbsp;[IntelliJ IDEA](https://blog.jetbrains.com/idea/2020/10/clone-a-project-from-github/)
   
@@ -25,10 +25,11 @@ Login credentials are:
 &nbsp;&nbsp;**Username:** user  
 &nbsp;&nbsp;**Password:** password
 
-Once logged in the user will be presented with a home screen where the user can create and manage appointments and customers.
+Once logged in the user will be taken to the home screen where the user can create and manage appointments and customers.
 
 # Technologies
   1. Java 11
   2. JavaFX 17
-  3. PostgreSQL
-  4. Maven
+  3. FXML
+  4. PostgreSQL
+  5. Maven
