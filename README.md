@@ -18,5 +18,7 @@ Instructions for cloning git repositories on thes IDEs can be found a the follow
 Once the program is running the user is presented with a login in screen.  
 
 Login credentials are:  
-&nbsp;&nbsp;Username: user  
-&nbsp;&nbsp;Password: password
+&nbsp;&nbsp;**Username:** user  
+&nbsp;&nbsp;**Password:** password
+
+Once logged in the user will be presented with a home screen where the user can create and manage appointments and customers.
