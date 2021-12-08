@@ -9,7 +9,8 @@ The major objectives of this project were:
   4. Have the program present province options based on the country the user selects.
   5. Use a relational database to persist data.
 
-<img src="https://raw.githubusercontent.com/JesseRM/appointment_keeper/master/src/main/resources/screenshot/appointment_keeper.JPG" width="500">
+<img src="https://raw.githubusercontent.com/JesseRM/appointment_keeper/master/src/main/resources/screenshot/appointment_keeper.JPG" width="600">
+<img src="https://raw.githubusercontent.com/JesseRM/appointment_keeper/master/src/main/resources/screenshot/appointment_keeper2.JPG" width="600">
 
 # Usage
 The simplest way to try this application is to clone this repository with an IDE that can run Maven projects such as NetBeans or IntelliJ IDEA.
