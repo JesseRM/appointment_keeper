@@ -22,3 +22,9 @@ Login credentials are:
 &nbsp;&nbsp;**Password:** password
 
 Once logged in the user will be presented with a home screen where the user can create and manage appointments and customers.
+
+# Technologies
+  1. Java 11
+  2. JavaFX 17
+  3. PostgreSQL
+  4. Maven
