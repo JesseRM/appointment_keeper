@@ -1,6 +1,6 @@
 package com.appointments.appointment_keeper;
 
-import com.appointments.appointment_keeper.util.DBConnection;
+import com.appointments.appointment_keeper.model.DBConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
