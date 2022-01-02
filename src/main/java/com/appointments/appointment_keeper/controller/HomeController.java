@@ -206,6 +206,8 @@ public class HomeController implements Initializable {
      * Populate the appointments table. 
      */
     private void populateAppointments() throws SQLException {
+        if (!DBConnection.isValid()) DBConnection.connect();
+        
         String query = "SELECT a.appointment_id, a.user_id, a.customer_id, a.title, a.description, a.type, a.location, a.status, " +
                         "a.start_time, a.end_time, u.name AS user_name, c.name AS customer_name " +
                         "FROM appointments AS a " +
@@ -354,7 +356,7 @@ public class HomeController implements Initializable {
             }
         }
             
-         return null;   
+        return null;   
     } 
     
 }

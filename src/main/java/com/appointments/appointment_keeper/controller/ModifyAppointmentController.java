@@ -119,6 +119,8 @@ public class ModifyAppointmentController implements Initializable {
      * Populates the user combobox. 
      */
     private void populateUsers() throws SQLException {
+        if (!DBConnection.isValid()) DBConnection.connect();
+        
         String query = "SELECT user_id, name FROM users;";
         PreparedStatement statement = DBConnection.getCurrentConnection().prepareStatement(query);
         
@@ -210,6 +212,7 @@ public class ModifyAppointmentController implements Initializable {
         
         setEndAndStartTimes();
         
+        if (!DBConnection.isValid()) DBConnection.connect();
         if (!validTimes()) return;
         
         String query = "UPDATE appointments SET " 
@@ -252,6 +255,8 @@ public class ModifyAppointmentController implements Initializable {
         Optional<ButtonType> confirmed = Message.displayConfirmation("Delete this appointment?");
         
         if (confirmed.get() == ButtonType.CANCEL) return;
+        
+        if (!DBConnection.isValid()) DBConnection.connect();
         
         String query = "DELETE FROM appointments WHERE appointment_id= ?";
         PreparedStatement statement = DBConnection.getCurrentConnection().prepareStatement(query);

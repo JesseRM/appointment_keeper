@@ -84,6 +84,8 @@ public class ModifyCustomerController implements Initializable {
         initializeCustomerTableCols();
         
         try {
+            if (!DBConnection.isValid()) DBConnection.connect();
+            
             cacheCountryInfo();
             cacheProvinceInfo();
             populateCustomerTable();
@@ -114,6 +116,8 @@ public class ModifyCustomerController implements Initializable {
         String phoneNumber = phoneNumberField.getText();
         String postalCode = postalCodeField.getText();
         Integer provinceId = provinceIDs.get(provinceComboBox.getSelectionModel().getSelectedItem());
+        
+        if (!DBConnection.isValid()) DBConnection.connect();
         
         String query = "UPDATE customers SET "
                 + "name= ?,"
@@ -159,6 +163,7 @@ public class ModifyCustomerController implements Initializable {
         boolean deleteConfirmed = confirmCustomerDelete(selectedCustomer.getId());
         
         if (!deleteConfirmed) return;
+        if (!DBConnection.isValid()) DBConnection.connect();
         
         String query = "DELETE FROM customers WHERE customer_id= ?";
         PreparedStatement statement = DBConnection.getCurrentConnection().prepareStatement(query);

@@ -41,4 +41,11 @@ public class DBConnection {
     public static Connection getCurrentConnection() {
         return conn;
     } 
+    
+    /**
+     * Check if DB connection is still valid. 
+     */
+    public static boolean isValid() throws SQLException {
+        return conn.isValid(0);
+    }
 }

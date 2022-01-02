@@ -68,6 +68,8 @@ public class LoginController implements Initializable {
      */
     @FXML
     private void loginUser(MouseEvent event) throws SQLException, IOException {
+        if (!DBConnection.isValid()) DBConnection.connect();
+        
         String query = "SELECT user_id FROM users WHERE name= ? AND password= ?";
         PreparedStatement statement = DBConnection.getCurrentConnection().prepareStatement(query);
         

@@ -193,6 +193,8 @@ public class AddAppointmentController implements Initializable {
         
         if (!validTimes()) return;
         
+        if (!DBConnection.isValid()) DBConnection.connect();
+        
         String query = "INSERT INTO appointments (title, description, location, type, start_time, end_time, customer_id, user_id, status)"
                         + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = DBConnection.getCurrentConnection().prepareStatement(query);

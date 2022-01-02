@@ -53,6 +53,8 @@ public class AddCustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            if (!DBConnection.isValid()) DBConnection.connect();
+            
             populateCountries();
         } catch (SQLException ex) {
             Logger.getLogger(AddCustomerController.class.getName()).log(Level.SEVERE, null, ex);
@@ -70,6 +72,7 @@ public class AddCustomerController implements Initializable {
         String currentProvince = provinceComboBox.getSelectionModel().getSelectedItem();
         Integer province_id = provinceIDs.get(currentProvince);
         
+        if (!DBConnection.isValid()) DBConnection.connect();
         
         String query = "INSERT INTO customers (name, address, phone_number, postal_code, province_id) VALUES ("
                 + "?, ?, ?, ?, ?)";
@@ -104,6 +107,8 @@ public class AddCustomerController implements Initializable {
         String selectedCountry = countryComboBox.getSelectionModel().getSelectedItem();
         Integer selectedCountryID = countryIDs.get(selectedCountry);
         
+        if (!DBConnection.isValid()) DBConnection.connect();
+        
         String query = "SELECT province_id, name FROM provinces WHERE country_id= ?";
         PreparedStatement statement = DBConnection.getCurrentConnection().prepareStatement(query);
         statement.setInt(1, selectedCountryID);
@@ -126,7 +131,7 @@ public class AddCustomerController implements Initializable {
     /** 
      * Populate countries combobox.
      */
-    private void populateCountries() throws SQLException {
+    private void populateCountries() throws SQLException {       
         String query = "SELECT country_id, name FROM countries;";
         PreparedStatement statement = DBConnection.getCurrentConnection().prepareStatement(query);
         
