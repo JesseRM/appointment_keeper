@@ -190,19 +190,6 @@ public class HomeController implements Initializable {
     }
     
     /** 
-     * Display the reports view.
-     * @param event Mouse click event.
-     */
-    @FXML
-    private void reports(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Reports.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-    
-    /** 
      * Populate the appointments table. 
      */
     private void populateAppointments() throws SQLException {
