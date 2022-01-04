@@ -22,6 +22,11 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
+import javafx.event.Event;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.PickResult;
 
 /**
  * FXML Controller class
@@ -67,7 +72,7 @@ public class LoginController implements Initializable {
      * @param event Mouse click event
      */
     @FXML
-    private void loginUser(MouseEvent event) throws SQLException, IOException {
+    private void loginUser(Event event) throws SQLException, IOException {
         if (!DBConnection.isValid()) DBConnection.connect();
         
         String query = "SELECT user_id FROM users WHERE name= ? AND password= ?";
@@ -104,7 +109,7 @@ public class LoginController implements Initializable {
      * Display main menu view. 
      * @param event Mouse click event
      */
-    private void displayHome(MouseEvent event) throws IOException {
+    private void displayHome(Event event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -125,5 +130,16 @@ public class LoginController implements Initializable {
         PrintWriter outputFile = new PrintWriter(fWriter);
         outputFile.println(entry); 
         outputFile.close();
+    }
+    
+    /**
+     * If user has pressed 'Enter' key, attempt login.
+     * @param event
+     */
+    @FXML
+    private void checkEnterKeyPress(KeyEvent event) throws SQLException, IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            loginUser(event);
+        }
     }
 }

@@ -28,7 +28,7 @@
                </font>
             </Label>
             <TextField fx:id="username" layoutX="226.0" layoutY="154.0" prefHeight="32.0" prefWidth="235.0" />
-            <PasswordField fx:id="userPassword" layoutX="226.0" layoutY="219.0" prefHeight="32.0" prefWidth="235.0" />
+            <PasswordField fx:id="userPassword" layoutX="226.0" layoutY="219.0" onKeyReleased="#checkEnterKeyPress" prefHeight="32.0" prefWidth="235.0" />
             <Button layoutX="105.0" layoutY="312.0" mnemonicParsing="false" onMouseReleased="#resetFields" prefHeight="39.0" prefWidth="149.0" style="-fx-text-fill: #C70039;" text="Reset">
                <font>
                   <Font size="15.0" />
