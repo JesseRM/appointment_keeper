@@ -385,15 +385,19 @@ public class ModifyAppointmentController implements Initializable {
      * @return False if outside business hours.
      */
     private boolean outsideBusinessHours() {
-        ZoneId EstZoneId = ZoneId.of("America/New_York");
-        LocalTime startTimeEst = startTimeLocal.atZone(currentZoneId).withZoneSameInstant(EstZoneId).toLocalTime();
-        LocalTime endTimeEst = endTimeLocal.atZone(currentZoneId).withZoneSameInstant(EstZoneId).toLocalTime();
+        LocalTime startBizZone = startTimeLocal
+                                    .atZone(currentZoneId)
+                                    .withZoneSameInstant(BusinessHours.getBIZ_HR_ZONE_ID())
+                                    .toLocalTime();
+        LocalTime endBizZone = endTimeLocal
+                                    .atZone(currentZoneId)
+                                    .withZoneSameInstant(BusinessHours.getBIZ_HR_ZONE_ID())
+                                    .toLocalTime();
         
-        LocalTime businessStart = LocalTime.parse("08:00");
-        LocalTime businessEnd = LocalTime.parse("22:00");
-        
-        if (startTimeEst.isBefore(businessStart) || startTimeEst.isAfter(businessEnd.minusMinutes(1))) return true;
-        if (endTimeEst.isBefore(businessStart) || endTimeEst.isAfter(businessEnd)) return true;
+        if (startBizZone.isBefore(BusinessHours.getOpen()) || 
+                startBizZone.isAfter(BusinessHours.getClose().minusMinutes(1))) return true;
+        if (endBizZone.isBefore(BusinessHours.getOpen()) || 
+                endBizZone.isAfter(BusinessHours.getClose())) return true;
         
         return false;
     }
