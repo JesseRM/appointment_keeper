@@ -31,7 +31,7 @@ Login credentials are:
 Once logged in the user will be taken to the home screen where the user can create and manage appointments and customers.
 
 # Technologies
-  1. Java 11
+  1. Java 17
   2. JavaFX 17
   3. FXML
   4. PostgreSQL
