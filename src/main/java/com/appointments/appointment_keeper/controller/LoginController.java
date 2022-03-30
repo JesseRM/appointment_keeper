@@ -2,6 +2,8 @@ package com.appointments.appointment_keeper.controller;
 
 import com.appointments.appointment_keeper.model.DBConnection;
 import com.appointments.appointment_keeper.model.User;
+import com.appointments.appointment_keeper.util.Authenticate;
+import com.appointments.appointment_keeper.util.Message;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -20,8 +22,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.Event;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -30,8 +36,6 @@ import javafx.scene.input.PickResult;
 
 /**
  * FXML Controller class
- *
- * @author Jesse
  */
 public class LoginController implements Initializable {
     private String userLocation;
@@ -55,6 +59,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         userLocationLabel.setText(userLocation);
+        
     }    
     
     /** 
@@ -72,28 +77,40 @@ public class LoginController implements Initializable {
      * @param event Mouse click event
      */
     @FXML
-    private void loginUser(Event event) throws SQLException, IOException {
+    private void loginUser(Event event) throws SQLException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
         if (!DBConnection.isValid()) DBConnection.connect();
         
-        String query = "SELECT user_id FROM users WHERE name= ? AND password= ?";
-        PreparedStatement statement = DBConnection.getCurrentConnection().prepareStatement(query);
-        
-        statement.setString(1, username.getText());
-        statement.setString(2, userPassword.getText());
-        
-        ResultSet queryResult = statement.executeQuery();
-        
-        if (queryResult.next()) {
-            Integer currentUserID = queryResult.getInt("user_id");
+        if (username.getText().trim().isEmpty() || userPassword.getText().isEmpty()) {
+            displayLoginError();
             
-            User.setId(currentUserID);
+            return;
+        }
+        
+        if (Authenticate.user(username.getText().toLowerCase(), userPassword.getText())) {
+            String query = "SELECT name, user_id FROM users WHERE name= ?";
+            PreparedStatement statement = DBConnection.getCurrentConnection().prepareStatement(query);
+
+            statement.setString(1, username.getText().toLowerCase());
+            ResultSet queryResult = statement.executeQuery();
             
-            logUserLogin("SUCCEEDED", username.getText());
-            
-            displayHome(event);
+            if (queryResult.next()) {
+                Integer currentUserID = queryResult.getInt("user_id");
+                String name = queryResult.getString("name");
+                
+                User.setId(currentUserID);
+                User.setUsername(name);
+
+                logUserLogin("SUCCEEDED", username.getText());
+
+                displayHome(event);
+            } else {
+                Message.displayError("Something went wrong, please try again.");
+                
+                return;
+            }
         } else {
             logUserLogin("FAILED", username.getText());
-            displayLoginError();
+            displayLoginError(); 
         }
         
     }
@@ -137,9 +154,18 @@ public class LoginController implements Initializable {
      * @param event
      */
     @FXML
-    private void checkEnterKeyPress(KeyEvent event) throws SQLException, IOException {
+    private void checkEnterKeyPress(KeyEvent event) throws SQLException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
         if (event.getCode() == KeyCode.ENTER) {
             loginUser(event);
         }
+    }
+
+    @FXML
+    private void displayNewUser(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/NewUser.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }
