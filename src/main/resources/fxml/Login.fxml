@@ -55,6 +55,7 @@
                </font>
             </Label>
             <Label layoutX="208.0" layoutY="84.0" style="-fx-text-fill: #f7f7f7;" text="Appointment Management System" />
+            <Button layoutX="504.0" layoutY="25.0" mnemonicParsing="false" onMouseReleased="#displayNewUser" prefHeight="32.0" prefWidth="84.0" text="New User" />
          </children>
       </Pane>
    </children>
