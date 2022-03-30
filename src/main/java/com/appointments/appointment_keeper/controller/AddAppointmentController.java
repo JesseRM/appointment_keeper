@@ -2,6 +2,7 @@ package com.appointments.appointment_keeper.controller;
 
 import com.appointments.appointment_keeper.util.Message;
 import com.appointments.appointment_keeper.model.DBConnection;
+import com.appointments.appointment_keeper.model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -96,6 +97,7 @@ public class AddAppointmentController implements Initializable {
         }
         
         setDatePicker();
+        setUser();
         populateHoursAndMins();
     }    
     
@@ -397,6 +399,15 @@ public class AddAppointmentController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+    
+    /** 
+     * Set user field value based on logged in user. 
+     */
+    public void setUser() {
+        String selectedUser = User.getUsername() + " (ID: " + User.getId() + ")";
+        
+        userComboBox.setValue(selectedUser);
     }
     
 }
