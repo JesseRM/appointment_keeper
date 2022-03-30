@@ -10,6 +10,7 @@ package com.appointments.appointment_keeper.model;
  */
 public class User {
     private static Integer id;
+    private static String username;
     private static boolean loggedIn = false;
     
     /** 
@@ -29,11 +30,27 @@ public class User {
     }
     
     /** 
+     * Get the logged in username.
+     * @return The logged in user ID. 
+     */
+    public static String getUsername() {
+        return username;
+    }
+    
+    /** 
      * Set the ID of the currently logged in user.
      * @param currentUser The logged in user ID.
      */
     public static void setId(Integer currentUser) {
         id = currentUser;
+    }
+    
+    /** 
+     * Set the username of the currently logged in user.
+     * @param name The logged in username.
+     */
+    public static void setUsername(String name) {
+        username = name;
     }
     
     /** 
