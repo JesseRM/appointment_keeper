@@ -201,9 +201,12 @@ public class HomeController implements Initializable {
                         "INNER JOIN users AS u " +
                         "ON a.user_id=u.user_id " +
                         "INNER JOIN customers AS c " +
-                        "ON a.customer_id=c.customer_id";
+                        "ON a.customer_id=c.customer_id " +
+                        "WHERE a.user_id = ?";
         
         PreparedStatement statement = DBConnection.getCurrentConnection().prepareStatement(query);
+        
+        statement.setInt(1, User.getId());
         
         ResultSet queryResult = statement.executeQuery();
         
