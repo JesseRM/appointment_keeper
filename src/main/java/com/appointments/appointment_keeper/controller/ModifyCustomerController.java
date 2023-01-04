@@ -120,11 +120,11 @@ public class ModifyCustomerController implements Initializable {
         if (!DBConnection.isValid()) DBConnection.connect();
         
         String query = "UPDATE customers SET "
-                + "name= ?,"
+                + "name= ?, "
                 + "address= ?, "
                 + "phone_number= ?, "
                 + "postal_code= ?, "
-                + "province_id= ?"
+                + "province_id= ? "
                 + "WHERE customer_id= ?";
         
         PreparedStatement statement = DBConnection.getCurrentConnection().prepareStatement(query);
