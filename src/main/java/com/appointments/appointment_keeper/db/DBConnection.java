@@ -1,25 +1,28 @@
-package com.appointments.appointment_keeper.model;
+package com.appointments.appointment_keeper.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public class DBConnection {
-    private static final String URI = "jdbc:postgresql://ec2-34-198-189-252.compute-1.amazonaws.com:5432/d1ar619r4jri83";
-    private static final String USER = "coseaxkdgygapa";
-    private static final String PASSWORD = "88dd93415af5c1655a4ee50f002a3b54f5d6da77b1df72057400948215c3fc4b";
+    private static String URL;
+    private static String USER;
+    private static String PASSWORD;
     private static Connection conn = null;
 
+    public static void setCredentials(HashMap<String, String> settings) {
+        URL = settings.get("url");
+        USER = settings.get("user");
+        PASSWORD = settings.get("password"); 
+    }
+        
     /** 
       * Set up the DB driver and establish a connection. 
       */
-    public static void connect() {
-        try {
-            conn = DriverManager.getConnection(URI, USER, PASSWORD);
-        }
-        catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+    public static void connect() throws SQLException {
+        conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        
     }
 
     /** 
@@ -27,9 +30,10 @@ public class DBConnection {
       */
     public static void closeConnection() {
         try {
-          conn.close();  
-        }
-        catch (SQLException e) {
+          if (DBConnection.getCurrentConnection() != null) {
+             conn.close();   
+          }  
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }   
     }
@@ -48,4 +52,5 @@ public class DBConnection {
     public static boolean isValid() throws SQLException {
         return conn.isValid(0);
     }
+    
 }

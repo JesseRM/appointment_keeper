@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.appointments.appointment_keeper.model;
 
 import java.time.LocalDateTime;
 
-/**
- *
- * @author Jesse
- */
 public class Appointment {
     private Integer id;
     private Integer userId;

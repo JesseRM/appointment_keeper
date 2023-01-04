@@ -1,7 +1,7 @@
 package com.appointments.appointment_keeper.controller;
 
 import com.appointments.appointment_keeper.util.Message;
-import com.appointments.appointment_keeper.model.DBConnection;
+import com.appointments.appointment_keeper.db.DBConnection;
 import com.appointments.appointment_keeper.model.User;
 import java.io.IOException;
 import java.net.URL;

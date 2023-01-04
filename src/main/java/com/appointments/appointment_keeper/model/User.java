@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.appointments.appointment_keeper.model;
 
-/**
- *
- * @author Jesse
- */
 public class User {
     private static Integer id;
     private static String username;
