@@ -1,6 +1,7 @@
 package com.appointments.appointment_keeper.controller;
 
-import com.appointments.appointment_keeper.model.DBConnection;
+import com.appointments.appointment_keeper.db.DBConnection;
+import com.appointments.appointment_keeper.db.DBSettings;
 import com.appointments.appointment_keeper.model.User;
 import com.appointments.appointment_keeper.util.Authenticate;
 import com.appointments.appointment_keeper.util.Message;
@@ -26,13 +27,12 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Optional;
+import javafx.application.Platform;
 import javafx.event.Event;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.PickResult;
 
 /**
  * FXML Controller class
@@ -60,6 +60,31 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         userLocationLabel.setText(userLocation);
         
+        try {
+            DBSettings.set();
+            DBConnection.setCredentials(DBSettings.getAll());
+            DBConnection.connect();
+        } catch (IOException | SQLException e) {
+            String message = "Error connecting to database. Would you like to delete settings file and "
+                    + "re-enter your credentials after app restart?";
+            
+            Optional<ButtonType> userInput = Message.displayConfirmation(message);
+        
+            if (userInput.get() == ButtonType.OK) {
+                if (DBSettings.deleteFile()) {
+                    message = "Settings file deleted.";
+                    Message.displayInformation(message);
+                } else {
+                    message = "Could not delete settings file.";
+                    Message.displayError(message);
+                }
+            }
+            
+            message = "Application will now close.";
+            Message.displayInformation(message);
+            
+            Platform.exit();
+        }
     }    
     
     /** 
@@ -106,7 +131,6 @@ public class LoginController implements Initializable {
             } else {
                 Message.displayError("Something went wrong, please try again.");
                 
-                return;
             }
         } else {
             logUserLogin("FAILED", username.getText());
@@ -168,4 +192,5 @@ public class LoginController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    
 }
