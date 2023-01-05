@@ -22,9 +22,10 @@ public class Authenticate {
     
     public static boolean user(String username, String password) throws SQLException, NoSuchAlgorithmException, InvalidKeySpecException {
         String salt = getStoredSalt(username);
-        String hash = hash(password, salt);
         
         if (salt == null) return false;
+        
+        String hash = hash(password, salt);
         
         String query = "SELECT password_hash FROM users WHERE name= ?";
         PreparedStatement statement = DBConnection.getCurrentConnection().prepareStatement(query);
