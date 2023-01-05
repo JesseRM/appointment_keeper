@@ -89,7 +89,7 @@ Appointments
     </tr>
     <tr>
         <td>end_time</td>
-        <td>Timestamp with time zone/td>
+        <td>Timestamp with time zone</td>
     </tr>
 </table>
 
