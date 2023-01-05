@@ -15,7 +15,154 @@ The major objectives of this project were:
 # Usage
 OPTION #1  
 To try this application one can downlaod the latest release, unzip the file and execute the JAR file contained within.  
-**Required:** To run the JAR file the machine running the JAR file must have the JAVA VM installed.  It can be downloaled from the [OFFICIAL JAVA WEBSITE](https://www.java.com/en/).
+**Required:** To run the JAR file the machine running the JAR file must have the Java VM installed.  It can be downloaled from the [OFFICIAL JAVA WEBSITE](https://www.java.com/en/).
+
+A PostgreSQL database is required with the following schemas:
+
+Users
+
+<table>
+    <tr>
+        <th>Column</th>
+        <th>Type</th>
+    </tr>
+    <tr>
+        <td>user_id (PK)</td>
+        <td>Integer</td>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td>String</td>
+    </tr>
+    <tr>
+        <td>password_hash</td>
+        <td>String</td>
+    </tr>
+    <tr>
+        <td>salt</td>
+        <td>String</td>
+    </tr>
+</table>
+
+Appointments
+
+<table>
+    <tr>
+        <th>Column</th>
+        <th>Type</th>
+    </tr>
+    <tr>
+        <td>appointment_id (PK)</td>
+        <td>Integer</td>
+    </tr>
+    <tr>
+        <td>user_id (FK)</td>
+        <td>Integer</td>
+    </tr>
+    <tr>
+        <td>customer_id (FK)</td>
+        <td>Integer</td>
+    </tr>
+    <tr>
+        <td>title</td>
+        <td>String</td>
+    </tr>
+    <tr>
+        <td>description</td>
+        <td>String</td>
+    </tr>
+    <tr>
+        <td>type</td>
+        <td>String</td>
+    </tr>
+    <tr>
+        <td>location</td>
+        <td>String</td>
+    </tr>
+    <tr>
+        <td>status</td>
+        <td>String</td>
+    </tr>
+    <tr>
+        <td>start_time</td>
+        <td>Timestamp with time zone</td>
+    </tr>
+    <tr>
+        <td>end_time</td>
+        <td>Timestamp with time zone/td>
+    </tr>
+</table>
+
+Customers
+
+<table>
+    <tr>
+        <th>Column</th>
+        <th>Type</th>
+    </tr>
+    <tr>
+        <td>customer_id (PK)</td>
+        <td>Integer</td>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td>String</td>
+    </tr>
+    <tr>
+        <td>address</td>
+        <td>String</td>
+    </tr>
+    <tr>
+        <td>phone_number</td>
+        <td>String</td>
+    </tr>
+    <tr>
+        <td>postal_code</td>
+        <td>String</td>
+    </tr>
+    <tr>
+        <td>province_id (FK)</td>
+        <td>Integer</td>
+    </tr>
+</table>
+
+Countries
+
+<table>
+    <tr>
+        <th>Column</th>
+        <th>Type</th>
+    </tr>
+    <tr>
+        <td>country_id (PK)</td>
+        <td>Integer</td>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td>Integer</td>
+    </tr>
+</table>
+
+Provinces
+
+<table>
+    <tr>
+        <th>Column</th>
+        <th>Type</th>
+    </tr>
+    <tr>
+        <td>province_id (PK)</td>
+        <td>Integer</td>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td>Integer</td>
+    </tr>
+    <tr>
+        <td>country_id (FK)</td>
+        <td>Integer</td>
+    </tr>
+</table>
 
 OPTION #2  
 Another option is to clone this repository with an IDE that can run Maven projects such as NetBeans or IntelliJ IDEA.  
@@ -23,12 +170,6 @@ Another option is to clone this repository with an IDE that can run Maven projec
 Instructions for cloning git repositories on these IDEs can be found a the following links:  
 &nbsp;&nbsp;[NetBeans](https://netbeans.apache.org/kb/docs/ide/git.html)  
 &nbsp;&nbsp;[IntelliJ IDEA](https://blog.jetbrains.com/idea/2020/10/clone-a-project-from-github/)
-
-Login credentials are:  
-&nbsp;&nbsp;**Username:** user  
-&nbsp;&nbsp;**Password:** password
-
-Once logged in the user will be taken to the home screen where the user can create and manage appointments and customers.
 
 # Technologies
   1. Java 17
