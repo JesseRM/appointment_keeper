@@ -6,13 +6,14 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 public class DBConnection {
+    private static final String PREFIX = "jdbc:postgresql://";
     private static String URL;
     private static String USER;
     private static String PASSWORD;
     private static Connection conn = null;
 
     public static void setCredentials(HashMap<String, String> settings) {
-        URL = settings.get("url");
+        URL = PREFIX + settings.get("url");
         USER = settings.get("user");
         PASSWORD = settings.get("password"); 
     }
